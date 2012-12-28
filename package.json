@@ -1,0 +1,19 @@
+{
+  "name": "raf",
+  "version": "0.0.0",
+  "description": "requestAnimationFrame polyfill library",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chrisdickinson/raf.git"
+  },
+  "keywords": [
+    "requestAnimationFrame",
+    "polyfill"
+  ],
+  "author": "Chris Dickinson <chris@neversaw.us>",
+  "license": "MIT"
+}
