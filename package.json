@@ -15,5 +15,18 @@
     "polyfill"
   ],
   "author": "Chris Dickinson <chris@neversaw.us>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "~0.1.5"
+  },
+  "testling": {
+    "files": "test.js",
+    "browsers": {
+      "ie": [ 9 ],
+      "firefox": [ 4, 13 ],
+      "chrome": [ 20 ],
+      "safari": [ 5.1 ],
+      "opera": [ 11, 12 ]
+    }
+  }
 }
