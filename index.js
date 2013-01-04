@@ -1,14 +1,15 @@
 module.exports = raf
 
 var EE = require('events').EventEmitter
+  , global = typeof window === 'undefined' ? this : window
 
 var _raf =
-  this.requestAnimationFrame ||
-  this.webkitRequestAnimationFrame ||
-  this.mozRequestAnimationFrame ||
-  this.msRequestAnimationFrame ||
-  this.oRequestAnimationFrame ||
-  (this.setImmediate ? function(fn, el) {
+  global.requestAnimationFrame ||
+  global.webkitRequestAnimationFrame ||
+  global.mozRequestAnimationFrame ||
+  global.msRequestAnimationFrame ||
+  global.oRequestAnimationFrame ||
+  (global.setImmediate ? function(fn, el) {
     setImmediate(fn)
   } :
   function(fn, el) {
@@ -40,4 +41,5 @@ function raf(el) {
   }
 }
 
+raf.polyfill = _raf
 raf.now = function() { return Date.now() }
