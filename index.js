@@ -2,6 +2,7 @@ module.exports = raf
 
 var EE = require('events').EventEmitter
   , global = typeof window === 'undefined' ? this : window
+  , now = Date.now || function () { return +new Date() }
 
 var _raf =
   global.requestAnimationFrame ||
@@ -42,4 +43,5 @@ function raf(el) {
 }
 
 raf.polyfill = _raf
-raf.now = function() { return Date.now() }
+raf.now = now
+
