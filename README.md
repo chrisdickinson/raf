@@ -1,6 +1,6 @@
 # raf
 
-[![browser support](http://ci.testling.com/chrisdickinson/raf.png)](http://ci.testling.com/chrisdickinson/raf)
+[![browser support]([2])]([1])
 
 reqeustAnimationFrame polyfill for browserify.
 
@@ -38,3 +38,7 @@ the polyfilled `requestAnimationFrame` function.
 # license
 
 MIT
+
+  [1]: http://ci.testling.com/chrisdickinson/raf
+  [2]: http://ci.testling.com/chrisdickinson/raf.png
+
