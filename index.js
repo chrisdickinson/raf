@@ -38,11 +38,11 @@ function raf(el) {
     
     now = _now
 
-    ee.emit('data', dt)
-
     if(!ee.paused) {
-      _raf(iter, el)
+      ee.emit('data', dt)
     }
+    
+    _raf(iter, el)
   }
 }
 
