@@ -35,6 +35,9 @@
       "ipad/6.0..latest",
       "iphone/6.0..latest"
     ]
+  },
+  "dependencies": {
+    "performance-now": "~0.1.3"
   }
 }
 
