@@ -1,12 +1,8 @@
 module.exports = raf
 
 var EE = require('events').EventEmitter
+  , now = require("performance-now")
   , global = typeof window === 'undefined' ? this : window
-  , now = global.performance && global.performance.now ? function() {
-    return performance.now()
-  } : Date.now || function () {
-    return +new Date()
-  }
 
 var _raf =
   global.requestAnimationFrame ||
