@@ -25,7 +25,7 @@ function raf(el, tick) {
   var now = raf.now()
     , ee = new EE
     
-  if (typeof el === 'function') {
+  if(typeof el === 'function') {
     tick = el
     el = undefined
   }
