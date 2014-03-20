@@ -35,9 +35,11 @@ function raf(el, tick) {
 
   _raf(iter, el)
   
-  if (tick) ee.on('data', function(dt) {
-    tick(dt)
-  })
+  if(tick) {
+    ee.on('data', function(dt) {
+      tick(dt)
+    })
+  }
 
   return ee
 
