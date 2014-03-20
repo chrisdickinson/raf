@@ -19,3 +19,12 @@ test('continues to emit events', function(t) {
       }
     })
 })
+
+test('default tick function gets data', function(t) {
+  var canvas = typeof document === "undefined" ? {} : document.createElement('canvas')
+    , ee = raf(canvas, function tick(dt) {
+      t.true(!!dt, 'got data') // got data!
+      ee.pause()
+      t.end()
+    })
+})

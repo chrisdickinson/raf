@@ -18,11 +18,15 @@ raf(canvas)
 
 # API
 
-## raf([optional element]) -> event emitter
+## raf([optional element], [optional tick function]) -> event emitter
 
 returns a event emitter that immediately starts emitting 'data'
 events representing animation frames for a given element (or for the entire
 window, if no element is passed).
+
+if you pass a function as the first or second argument it will get called on every tick. this is a convenience method for
+the example above that binds to the `data` event, e.g. `raf().on('data', tickFunction)` is the same as `raf(tickFunction)`
+or `raf(el, tickFunction)`
 
 ## ee.pause() / ee.resume()
 

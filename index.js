@@ -21,14 +21,23 @@ var _raf =
     setTimeout(fn, 0)
   })
 
-function raf(el) {
+function raf(el, tick) {
   var now = raf.now()
     , ee = new EE
-
+    
+  if (typeof el === 'function') {
+    tick = el
+    el = undefined
+  }
+  
   ee.pause = function() { ee.paused = true }
   ee.resume = function() { ee.paused = false }
 
   _raf(iter, el)
+  
+  if (tick) ee.on('data', function(dt) {
+    tick(dt)
+  })
 
   return ee
 
