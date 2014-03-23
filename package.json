@@ -17,7 +17,7 @@
   "author": "Chris Dickinson <chris@neversaw.us>",
   "license": "MIT",
   "devDependencies": {
-    "tape": "~1.0.4"
+    "tape": "~2.11.0"
   },
   "testling": {
     "files": "test.js",
@@ -37,3 +37,4 @@
     ]
   }
 }
+

@@ -28,3 +28,4 @@ test('default tick function gets data', function(t) {
       t.end()
     })
 })
+
