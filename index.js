@@ -1,25 +1,13 @@
 module.exports = raf
 
 var EE = require('events').EventEmitter
-  , global = typeof window === 'undefined' ? this : window
+  , _raf = require('./polyfill.js')
   , now = global.performance && global.performance.now ? function() {
     return performance.now()
   } : Date.now || function () {
     return +new Date()
   }
 
-var _raf =
-  global.requestAnimationFrame ||
-  global.webkitRequestAnimationFrame ||
-  global.mozRequestAnimationFrame ||
-  global.msRequestAnimationFrame ||
-  global.oRequestAnimationFrame ||
-  (global.setImmediate ? function(fn, el) {
-    setImmediate(fn)
-  } :
-  function(fn, el) {
-    setTimeout(fn, 0)
-  })
 
 function raf(el, tick) {
   var now = raf.now()
