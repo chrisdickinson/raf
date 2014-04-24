@@ -21,7 +21,7 @@ function raf(el, tick) {
   ee.pause = function() { ee.paused = true }
   ee.resume = function() { ee.paused = false }
 
-  _raf(iter, el)
+  _raf.call(window, iter, el)
   
   if(tick) {
     ee.on('data', function(dt) {
@@ -41,7 +41,7 @@ function raf(el, tick) {
       ee.emit('data', dt)
     }
     
-    _raf(iter, el)
+    _raf.call(window, iter, el)
   }
 }
 
