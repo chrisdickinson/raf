@@ -2,7 +2,7 @@
 
 [![browser support](http://ci.testling.com/chrisdickinson/raf.png)](http://ci.testling.com/chrisdickinson/raf)
 
-reqeustAnimationFrame polyfill for browserify.
+requestAnimationFrame polyfill for browserify.
 
 ```javascript
 var raf = require('raf')
