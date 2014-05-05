@@ -4,6 +4,7 @@
   "description": "requestAnimationFrame polyfill library",
   "main": "index.js",
   "scripts": {
+    "testling": "browserify test.js | testling",
     "test": "node test.js"
   },
   "repository": {
@@ -17,6 +18,8 @@
   "author": "Chris Dickinson <chris@neversaw.us>",
   "license": "MIT",
   "devDependencies": {
+    "testling": "^1.6.1",
+    "browserify": "^3.46.0",
     "tape": "~2.11.0"
   },
   "testling": {
