@@ -20,7 +20,12 @@ function raf(el, tick) {
   }
   
   ee.pause = function() { ee.paused = true }
-  ee.resume = function() { ee.paused = false }
+  ee.resume = function() {
+    if(ee.paused) {
+      _raf.call(global, iter, el)
+    }
+    ee.paused = false
+  }
 
   _raf.call(global, iter, el)
   
@@ -41,8 +46,9 @@ function raf(el, tick) {
     if(!ee.paused) {
       ee.emit('data', dt)
     }
-    
-    _raf.call(global, iter, el)
+    if(!ee.paused) {
+      _raf.call(global, iter, el)
+    }
   }
 }
 
