@@ -2,6 +2,7 @@ module.exports = raf
 
 var EE = require('events').EventEmitter
   , _raf = require('./polyfill.js')
+  , global = require('./window.js')
   , now = global.performance && global.performance.now ? function() {
     return performance.now()
   } : Date.now || function () {
@@ -21,7 +22,7 @@ function raf(el, tick) {
   ee.pause = function() { ee.paused = true }
   ee.resume = function() { ee.paused = false }
 
-  _raf.call(window, iter, el)
+  _raf.call(global, iter, el)
   
   if(tick) {
     ee.on('data', function(dt) {
@@ -41,7 +42,7 @@ function raf(el, tick) {
       ee.emit('data', dt)
     }
     
-    _raf.call(window, iter, el)
+    _raf.call(global, iter, el)
   }
 }
 
