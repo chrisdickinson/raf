@@ -29,3 +29,24 @@ test('default tick function gets data', function(t) {
     })
 })
 
+test('pause/resume', function(t) {
+  t.plan(7)
+  var canvas = typeof document === 'undefined' ? {} : document.createElement('canvas')
+    , times = 0
+    , ee = raf(canvas, function tick(dt) {
+      times++
+      t.ok(dt >= 0, 'time has passed')
+      if(times == 5) {
+        ee.pause()
+        setTimeout(function() {
+          ee.resume()
+        }, 100)
+      }
+      if(times == 6) {
+        t.ok(dt >= 100, 'stream resumed after pause')
+        ee.pause()
+        t.end()
+      }
+    })
+})
+
