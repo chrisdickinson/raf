@@ -46,6 +46,9 @@ function raf(el, tick) {
     if(!ee.paused) {
       ee.emit('data', dt)
     }
+    // Check paused status again in
+    // case `pause()` was invoked by
+    // one of the 'data' listeners
     if(!ee.paused) {
       _raf.call(global, iter, el)
     }
