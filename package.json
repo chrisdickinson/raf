@@ -1,9 +1,10 @@
 {
   "name": "raf",
   "version": "0.1.3",
-  "description": "requestAnimationFrame polyfill library",
+  "description": "requestAnimationFrame polyfill for node and the browser",
   "main": "index.js",
   "scripts": {
+    "testling": "browserify test.js | testling",
     "test": "node test.js"
   },
   "repository": {
@@ -15,9 +16,17 @@
     "polyfill"
   ],
   "author": "Chris Dickinson <chris@neversaw.us>",
+  "contributors": [
+    "Christian Maughan Tegnér <christian.tegner@gmail.com>"
+  ],
   "license": "MIT",
   "devDependencies": {
+    "testling": "^1.6.1",
+    "browserify": "^3.46.0",
     "tape": "~2.11.0"
+  },
+  "dependencies": {
+    "performance-now": "^0.1.3"
   },
   "testling": {
     "files": "test.js",

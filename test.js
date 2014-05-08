@@ -1,31 +1,43 @@
 var test = require('tape')
-  , raf = require('./index')
+  , raf = require('./index.js')
 
 test('continues to emit events', function(t) {
-  var canvas = typeof document === "undefined" ? {} : document.createElement('canvas')
-    , ee = raf(canvas)
+  t.plan(11)
+
+  var start = new Date().getTime()
     , times = 0
 
-  t.plan(10)
-
-  canvas.width = canvas.height = 100
-
-  ee
-    .on('data', function(dt) {
-      t.ok(dt >= 0, "time has passed")
-      if(++times == 10) {
-        ee.pause()
-        t.end() 
-      }
-    })
-})
-
-test('default tick function gets data', function(t) {
-  var canvas = typeof document === "undefined" ? {} : document.createElement('canvas')
-    , ee = raf(canvas, function tick(dt) {
-      t.true(!!dt, 'got data') // got data!
-      ee.pause()
+  raf(function tick(dt) {
+    t.ok(dt >= 0, 'time has passed')
+    if(++times == 10) {
+      t.ok((new Date().getTime() - start) >= 150, 'should take at least 9 frames worth of wall time')
       t.end()
-    })
+    } else {
+      raf(tick)
+    }
+  })
 })
 
+test('cancel removes callbacks from queue', function(t) {
+  t.plan(6)
+
+  function cb1() { cb1.called = true }
+  function cb2() { cb2.called = true }
+  function cb3() { cb3.called = true }
+
+  var handle1 = raf(cb1)
+  t.ok(handle1, 'returns a handle')
+  var handle2 = raf(cb2)
+  t.ok(handle2, 'returns a handle')
+  var handle3 = raf(cb3)
+  t.ok(handle3, 'returns a handle')
+
+  raf.cancel(handle2)
+
+  raf(function() {
+    t.ok(cb1.called, 'callback was invoked')
+    t.notOk(cb2.called, 'callback was cancelled')
+    t.ok(cb3.called, 'callback was invoked')
+    t.end()
+  })
+})
