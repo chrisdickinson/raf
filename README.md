@@ -1,43 +1,39 @@
 # raf
 
-[![browser support](http://ci.testling.com/chrisdickinson/raf.png)](http://ci.testling.com/chrisdickinson/raf)
+[![Browser Support](http://ci.testling.com/chrisdickinson/raf.png)](http://ci.testling.com/chrisdickinson/raf)
 
-requestAnimationFrame polyfill for browserify.
+requestAnimationFrame polyfill for node and the browser.
 
-```javascript
+```js
 var raf = require('raf')
-  , canvas = document.getElementById('opengl')
 
-raf(canvas)
-  .on('data', function(dt) {
-    console.log('difference in time is '+dt+'ms')
-  })
-
-
+raf(function tick() {
+  // Animation logic
+  raf(tick)
+})
 ```
+
+**Note:** The stream/event emitter logic found in versions prior to 1.0.0 can be found in [raf-stream](https://www.npmjs.org/package/raf-stream).
 
 # API
 
-## raf([optional element], [optional tick function]) -> event emitter
+[Documentation at Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/API/window.requestAnimationFrame), [W3 Specification](http://www.w3.org/TR/animation-timing/#requestAnimationFrame)
 
-returns a event emitter that immediately starts emitting 'data'
-events representing animation frames for a given element (or for the entire
-window, if no element is passed).
+```js
+var raf = require('raf')
+```
 
-if you pass a function as the first or second argument it will get called on every tick. this is a convenience method for
-the example above that binds to the `data` event, e.g. `raf().on('data', tickFunction)` is the same as `raf(tickFunction)`
-or `raf(el, tickFunction)`
+## var handle = raf(callback)
 
-## ee.pause() / ee.resume()
+`callback` is the function to invoke in the next frame. `handle` is a long integer value that uniquely identifies the entry in the callback list. This is a non-zero value, but you may not make any other assumptions about its value.
 
-pauses or resumes the events coming out of `ee`.
+## raf.cancel(handle)
 
-the `dt` on the next event after a resume will represent the difference between
-the last rendered frame and the newest frame.
+`handle` is the entry identifier returned by `raf()`. Removes the queued animation frame callback (other queued callbacks will still be invoked unless cancelled).
 
-## raf.polyfill
+# Acknowledgments
 
-the polyfilled `requestAnimationFrame` function.
+Based on work by Erik Möller, Paul Irish, and Tino Zijdel (https://gist.github.com/paulirish/1579671)
 
 # license
 
