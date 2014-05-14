@@ -1,4 +1,4 @@
-var global = typeof window === 'undefined' ? this : window
+var global = require('./window.js')
 
 var _raf =
   global.requestAnimationFrame ||
