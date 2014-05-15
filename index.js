@@ -11,7 +11,8 @@ for(var i = 0; i < vendors.length && !raf; i++) {
       || global[vendors[i] + 'CancelRequest' + suffix]
 }
 
-if(!raf) {
+// Some versions of FF have rAF but not cAF
+if(!raf || !caf) {
   var last = 0
     , id = 0
     , queue = []
