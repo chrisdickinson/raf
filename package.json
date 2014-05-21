@@ -1,6 +1,6 @@
 {
   "name": "raf",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "requestAnimationFrame polyfill for node and the browser",
   "main": "index.js",
   "scripts": {
