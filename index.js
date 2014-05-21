@@ -1,6 +1,6 @@
 var now = require('performance-now')
   , global = typeof window === 'undefined' ? {} : window
-  , vendors = ['ms', 'moz', 'webkit', 'o']
+  , vendors = ['moz', 'webkit']
   , suffix = 'AnimationFrame'
   , raf = global['request' + suffix]
   , caf = global['cancel' + suffix] || global['cancelRequest' + suffix]
