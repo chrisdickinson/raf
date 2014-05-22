@@ -8,9 +8,10 @@ test('continues to emit events', function(t) {
     , times = 0
 
   raf(function tick(dt) {
-    t.ok(dt >= 0, 'time has passed')
+    t.ok(dt >= 0, 'time has passed: ' + dt)
     if(++times == 10) {
-      t.ok((new Date().getTime() - start) >= 150, 'should take at least 9 frames worth of wall time')
+      var elapsed = (new Date().getTime() - start)
+      t.ok(elapsed >= 150, 'should take at least 9 frames worth of wall time: ' + elapsed)
       t.end()
     } else {
       raf(tick)
