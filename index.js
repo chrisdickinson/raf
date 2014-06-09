@@ -31,9 +31,7 @@ if(!raf || !caf) {
         queue.length = 0
         for (var i = 0; i < cp.length; i++) {
           if (!cp[i].cancelled) {
-            try{
-              cp[i].callback(last)
-            } catch(e) {}
+            cp[i].callback(last)
           }
         }
       }, next)
