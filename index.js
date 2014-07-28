@@ -32,8 +32,8 @@ if(!raf || !caf) {
         // callbacks from appending listeners
         // to the current frame's queue
         queue.length = 0
-        for (var i = 0; i < cp.length; i++) {
-          if (!cp[i].cancelled) {
+        for(var i = 0; i < cp.length; i++) {
+          if(!cp[i].cancelled) {
             try{
               cp[i].callback(last)
             } catch(e) {
@@ -64,18 +64,14 @@ module.exports = function(fn) {
   // Wrap in a new function to prevent
   // `cancel` potentially being assigned
   // to the native rAF function
-  if (!native) {
+  if(!native) {
     return raf.call(global, fn)
   }
-  
-  
-  return raf.call(global, function () {
-    try {
+  return raf.call(global, function() {
+    try{
       fn.apply(this, arguments)
-    } catch (err) {
-      setTimeout(function () {
-        throw err
-      }, 0)
+    } catch(err) {
+      setTimeout(function() { throw err }, 0)
     }
   })
 }
