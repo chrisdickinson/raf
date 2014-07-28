@@ -70,8 +70,8 @@ module.exports = function(fn) {
   return raf.call(global, function() {
     try{
       fn.apply(this, arguments)
-    } catch(err) {
-      setTimeout(function() { throw err }, 0)
+    } catch(e) {
+      setTimeout(function() { throw e }, 0)
     }
   })
 }
