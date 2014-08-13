@@ -41,7 +41,7 @@ if(!raf || !caf) {
             }
           }
         }
-      }, next)
+      }, Math.round(next))
     }
     queue.push({
       handle: ++id,
