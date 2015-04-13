@@ -42,3 +42,21 @@ test('cancel removes callbacks from queue', function(t) {
     t.end()
   })
 })
+
+test('raf should throw on errors', function(t) {
+  t.plan(1)
+
+  var onError = function() {
+    t.pass('error bubbled up to event loop')
+  }
+
+  if(typeof window !== 'undefined') {
+    window.onerror = onError
+  } else if(typeof process !== 'undefined') {
+    process.on('uncaughtException', onError)
+  }
+
+  raf(function() {
+    throw new Error('foo')
+  })
+})
