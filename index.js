@@ -4,7 +4,6 @@ var now = require('performance-now')
   , suffix = 'AnimationFrame'
   , raf = global['request' + suffix]
   , caf = global['cancel' + suffix] || global['cancelRequest' + suffix]
-  , isNative = true
 
 for(var i = 0; i < vendors.length && !raf; i++) {
   raf = global[vendors[i] + 'Request' + suffix]
@@ -14,8 +13,6 @@ for(var i = 0; i < vendors.length && !raf; i++) {
 
 // Some versions of FF have rAF but not cAF
 if(!raf || !caf) {
-  isNative = false
-
   var last = 0
     , id = 0
     , queue = []
@@ -64,16 +61,7 @@ module.exports = function(fn) {
   // Wrap in a new function to prevent
   // `cancel` potentially being assigned
   // to the native rAF function
-  if(!isNative) {
-    return raf.call(global, fn)
-  }
-  return raf.call(global, function() {
-    try{
-      fn.apply(this, arguments)
-    } catch(e) {
-      setTimeout(function() { throw e }, 0)
-    }
-  })
+  return raf.call(global, fn)
 }
 module.exports.cancel = function() {
   caf.apply(global, arguments)
