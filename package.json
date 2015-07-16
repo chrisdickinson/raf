@@ -26,7 +26,7 @@
     "tape": "^4.0.0"
   },
   "dependencies": {
-    "performance-now": "~0.1.3"
+    "performance-now": "~0.2.0"
   },
   "testling": {
     "files": "test.js",
