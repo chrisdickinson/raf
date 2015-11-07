@@ -5,7 +5,7 @@ var now = require('performance-now')
   , raf = global['request' + suffix]
   , caf = global['cancel' + suffix] || global['cancelRequest' + suffix]
 
-for(var i = 0; i < vendors.length && !raf; i++) {
+for(var i = 0; !raf && i < vendors.length; i++) {
   raf = global[vendors[i] + 'Request' + suffix]
   caf = global[vendors[i] + 'Cancel' + suffix]
       || global[vendors[i] + 'CancelRequest' + suffix]
