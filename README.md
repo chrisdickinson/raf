@@ -33,7 +33,7 @@ var raf = require('raf')
 
 ## raf.polyfill()
 
-Shorthand to polyfill `window.requestAnimationFrame` and `window.cancelAnimationFrame` if necessary.
+Shorthand to polyfill `window.requestAnimationFrame` and `window.cancelAnimationFrame` if necessary (Polyfills `global` in node).
 
 # Acknowledgments
 
