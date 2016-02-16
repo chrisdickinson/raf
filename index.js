@@ -66,3 +66,9 @@ module.exports = function(fn) {
 module.exports.cancel = function() {
   caf.apply(global, arguments)
 }
+module.exports.polyfill = function() {
+  if (typeof global.requestAnimationFrame !== 'function') {
+    global.requestAnimationFrame = module.exports
+    global.cancelAnimationFrame = module.exports.cancel
+  }
+}
