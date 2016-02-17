@@ -31,6 +31,10 @@ var raf = require('raf')
 
 `handle` is the entry identifier returned by `raf()`. Removes the queued animation frame callback (other queued callbacks will still be invoked unless cancelled).
 
+## raf.polyfill()
+
+Shorthand to polyfill `window.requestAnimationFrame` and `window.cancelAnimationFrame` if necessary (Polyfills `global` in node).
+
 # Acknowledgments
 
 Based on work by Erik Möller, Paul Irish, and Tino Zijdel (https://gist.github.com/paulirish/1579671)
@@ -38,4 +42,3 @@ Based on work by Erik Möller, Paul Irish, and Tino Zijdel (https://gist.github.
 # license
 
 MIT
-
