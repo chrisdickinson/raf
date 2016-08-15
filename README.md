@@ -35,6 +35,8 @@ var raf = require('raf')
 
 Shorthand to polyfill `window.requestAnimationFrame` and `window.cancelAnimationFrame` if necessary (Polyfills `global` in node).
 
+Alternatively you can require `raf/polyfill` which will act the same as `require('raf').polyfill()`.
+
 # Acknowledgments
 
 Based on work by Erik Möller, Paul Irish, and Tino Zijdel (https://gist.github.com/paulirish/1579671)
