@@ -71,6 +71,18 @@ Shorthand to polyfill `window.requestAnimationFrame` and `window.cancelAnimation
 
 Alternatively you can require `raf/polyfill` which will act the same as `require('raf').polyfill()`.
 
+### raf.polyfillObject(object)
+
+Polyfill `requestAnimationFrame` and `cancelAnimationFrame` on a given object, instead of the inferred global.
+Useful if you have an instance of a fake `window` object, and want to add `raf` and `caf` to it.
+
+```js
+const raf = require('raf');
+const myWindow = new JSDOM().window; 
+
+raf.polyfillObject(myWindow);
+```
+
 ## Acknowledgments
 
 Based on work by Erik Möller, Paul Irish, and Tino Zijdel (https://gist.github.com/paulirish/1579671)

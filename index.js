@@ -70,3 +70,7 @@ module.exports.polyfill = function() {
   root.requestAnimationFrame = raf
   root.cancelAnimationFrame = caf
 }
+module.exports.polyfillObject = function(object) {
+  object.requestAnimationFrame = raf.bind(object)
+  object.cancelAnimationFrame = caf.bind(object)
+}
