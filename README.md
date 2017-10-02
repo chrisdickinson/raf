@@ -65,11 +65,14 @@ The API will be available on `window.raf`.
 
 `handle` is the entry identifier returned by `raf()`. Removes the queued animation frame callback (other queued callbacks will still be invoked unless cancelled).
 
-### raf.polyfill()
+### raf.polyfill([object])
 
 Shorthand to polyfill `window.requestAnimationFrame` and `window.cancelAnimationFrame` if necessary (Polyfills `global` in node).
 
 Alternatively you can require `raf/polyfill` which will act the same as `require('raf').polyfill()`.
+
+If you provide `object` the polyfills are attached to that given object, instead of the inferred global.
+Useful if you have an instance of a fake `window` object, and want to add `raf` and `caf` to it.
 
 ## Acknowledgments
 
