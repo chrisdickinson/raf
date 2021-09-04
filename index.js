@@ -1,4 +1,4 @@
-var now = require('performance-now')
+var now = performance.now
   , root = typeof window === 'undefined' ? global : window
   , vendors = ['moz', 'webkit']
   , suffix = 'AnimationFrame'
