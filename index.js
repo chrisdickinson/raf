@@ -1,5 +1,5 @@
 var now = require('performance-now')
-  , root = typeof window === 'undefined' ? global : window
+  , root = typeof window === 'undefined' ? (typeof global === undefined ? globalThis : global) : window
   , vendors = ['moz', 'webkit']
   , suffix = 'AnimationFrame'
   , raf = root['request' + suffix]
