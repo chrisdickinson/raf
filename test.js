@@ -60,3 +60,22 @@ test('raf should throw on errors', function(t) {
     throw new Error('foo')
   })
 })
+
+test('cancel removes a later callback in the active frame', function(t) {
+  t.plan(2)
+
+  var called = false
+    , handle
+
+  raf(function() {
+    raf.cancel(handle)
+    raf(function() {
+      t.notOk(called, 'later callback in the same frame was cancelled')
+      t.end()
+    })
+  })
+  handle = raf(function() { called = true })
+  raf(function() {
+    t.pass('unrelated callback in the current frame still runs')
+  })
+})

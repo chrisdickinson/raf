@@ -16,6 +16,7 @@ if(!raf || !caf) {
   var last = 0
     , id = 0
     , queue = []
+    , activeQueue = []
     , frameDuration = 1000 / 60
 
   raf = function(callback) {
@@ -24,7 +25,7 @@ if(!raf || !caf) {
         , next = Math.max(0, frameDuration - (_now - last))
       last = next + _now
       setTimeout(function() {
-        var cp = queue.slice(0)
+        var cp = activeQueue = queue.slice(0)
         // Clear queue here to prevent
         // callbacks from appending listeners
         // to the current frame's queue
@@ -38,6 +39,7 @@ if(!raf || !caf) {
             }
           }
         }
+        activeQueue = []
       }, Math.round(next))
     }
     queue.push({
@@ -49,9 +51,10 @@ if(!raf || !caf) {
   }
 
   caf = function(handle) {
-    for(var i = 0; i < queue.length; i++) {
-      if(queue[i].handle === handle) {
-        queue[i].cancelled = true
+    var callbacks = queue.concat(activeQueue)
+    for(var i = 0; i < callbacks.length; i++) {
+      if(callbacks[i].handle === handle) {
+        callbacks[i].cancelled = true
       }
     }
   }
